@@ -7,6 +7,12 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var user = require('./routes/user');
+
+// 模块在首次 require 时执行代码，之后的 require 都是之前的执行结果
+var mongdb = require("./config/mongdb");  // 引入数据库连接模块
+
+var db = mongdb();                          // 获取数据库连接
 
 var app = express();
 
@@ -24,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use("/user",user)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
