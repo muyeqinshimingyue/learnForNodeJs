@@ -29,7 +29,7 @@ router.get("/save",function (req,res) {
 
     var  user = new User({
         id:1,
-        username:'黎明',
+        username:'黎明1',
         createTime:new Date()
     });
     user.save(user,function (error) {
@@ -41,6 +41,17 @@ router.get("/save",function (req,res) {
     });
 });
 
-
+// 获取某个用户
+router.get( "/get/:username",function(req,res){
+    var  User = mongoose.model("User");
+    User.find({ 'username':req.params.username},function(error,docs){
+            if( error ){
+                res.end('查询数据出错');
+            }else{
+                res.json(docs);
+            }
+        }
+    );
+} );
 
 module.exports = router;   // 返回该路由
