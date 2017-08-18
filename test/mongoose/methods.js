@@ -18,8 +18,8 @@ BookSchema.methods.printInfo = function(){
     console.log(JSON.stringify(this));
 };
 var Book = mongoose.model("Book",BookSchema);
-Book.findByIsbn(123456,function(error,doc){
+Book.findByIsbn(123456,function(error,doc){  // 静态方法 使用模型调用
     console.log(doc);
 });
 var book = new Book({ isbn:123456,name:"hdhdhdhh" });
-book.printInfo();
+book.printInfo();  // 实例方法使用普通实例调用
